@@ -45,6 +45,7 @@ function words( text ) {
 }
 
 exports.main = function ( path ) {
+    console.log( "Run gulpease script..." );
     // The path MUST have above struct:
     // res/section/all_file.tex
     path += "res/sections/"; // Attach the location when all sections are store
