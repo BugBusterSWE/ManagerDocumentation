@@ -93,7 +93,5 @@ exports.main = function ( path ) {
     console.log( `Words: ${words( cleanText )}` );
 
     var seToLe =  300 * sentences( cleanText ) - 10 * letters( cleanText );
-    var words = words( cleanText );
-    
-    return 89 + ( seToLe ) / words;
+    return 89 + ( seToLe ) / words( cleanText );
 } 
