@@ -18,7 +18,7 @@ function letters( text ) {
    @return {number} - Number of sentences
 */
 function sentences( text ) {
-    var allCarriageReturn = cleanText;
+    var allCarriageReturn = text;
 
     // For each end lines or sentences add a point and carrige return.
     // Example:
