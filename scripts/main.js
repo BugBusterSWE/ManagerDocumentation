@@ -6,4 +6,4 @@ ReactDOM.render(
     document.getElementById('example')
 );
 
-console.log( "Render window" );
+window.onload = function () { console.log( "Render window" ); };
