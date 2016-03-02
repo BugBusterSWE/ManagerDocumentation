@@ -45,10 +45,10 @@ function words( text ) {
 }
 
 exports.main = function ( path ) {
-    console.log( "Run gulpease script..." );
+    console.log( "Run gulpease script in " + path + " ..." );
     // The path MUST have above struct:
     // res/section/all_file.tex
-    path += "res/sections/"; // Attach the location when all sections are store
+    path = `${path}res/sections/`; // Attach the location when all sections are store
 
     var files = fs.readdirSync( path ); // Get all files 
     var dcDetex = "";
