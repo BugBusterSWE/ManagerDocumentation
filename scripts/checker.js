@@ -14,12 +14,12 @@ function getSelect(array) {
 }
 
 function solve() {
-	var targets = ["prov","pass"];
+	var targets = ["provaro","pass"];
 	var regWord = /\w+/g;
 
 	var controls = [];
 
-	var text = document.getElementById("content").innerHTML;
+	var text = document.getElementById("prova").innerHTML;
 	var words = text.match(regWord);
 	console.log(words);
 	var before = "";
@@ -51,7 +51,7 @@ function solve() {
 
 	start = 0;
 	var result = "";
-	var result = document.getElementById("result");
+	var result = document.getElementById("check");
 
 	controls.forEach( function ( chunk ) {
 		if ( chunk.end - start > 0 ) {
@@ -65,6 +65,6 @@ function solve() {
 	});
 }
 
-window.onload = solve;
+
 
 
