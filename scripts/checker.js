@@ -49,8 +49,6 @@ function solve() {
 	}
     });
 
-    console.log(controls);
-
     start = 0;
     var result = "";
     var result = document.getElementById("check");
@@ -61,8 +59,8 @@ function solve() {
 		result.innerHTML + text.substring(start,chunk.end);
 	}	
 	
-	var choice = getSelect(chunk.mistake);
-	result.appendChild(choice);
+//	var choice = getSelect(chunk.mistake);
+//	result.appendChild(choice);
 
 	start = chunk.end + chunk.mistake[0].length; 
     });
