@@ -1,3 +1,7 @@
+function print() {
+    console.log("Ecco");
+}
+
 function getSelect(array) {
     var select = document.createElement("select");
     var option = undefined;	
