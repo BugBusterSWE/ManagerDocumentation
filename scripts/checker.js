@@ -55,11 +55,10 @@ function solve() {
 	if ( chunk.end - start > 0 ) {
 	    result.innerHTML = 
 		result.innerHTML + text.substring(start,chunk.end);
-
-	    console.log(result.innerHTML);
 	}	
 
 	var choice = getSelect(chunk.mistake);
+	console.log(choice);
 	result.appendChild(choice);
 
 	start = chunk.end + chunk.mistake[0].length; 
