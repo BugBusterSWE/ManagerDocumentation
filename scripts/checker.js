@@ -58,8 +58,9 @@ function solve() {
 	}	
 
 	var choice = getSelect(chunk.mistake);
-	console.log(choice);
 	result.appendChild(choice);
+
+	console.log(result.innerHTML);
 
 	start = chunk.end + chunk.mistake[0].length; 
     });
