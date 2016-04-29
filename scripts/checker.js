@@ -21,7 +21,6 @@ function solve() {
 
     var text = document.getElementById("prova").innerHTML;
     var words = text.match(regWord);
-    console.log(words);
     var before = "";
 
     var start = 0;
@@ -50,17 +49,18 @@ function solve() {
     });
 
     start = 0;
-    var result = "";
     var result = document.getElementById("check");
 
     controls.forEach( function ( chunk ) {
 	if ( chunk.end - start > 0 ) {
 	    result.innerHTML = 
 		result.innerHTML + text.substring(start,chunk.end);
+
+	    console.log(result.innerHTML);
 	}	
-	
-//	var choice = getSelect(chunk.mistake);
-//	result.appendChild(choice);
+
+	var choice = getSelect(chunk.mistake);
+	result.appendChild(choice);
 
 	start = chunk.end + chunk.mistake[0].length; 
     });
