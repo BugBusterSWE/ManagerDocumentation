@@ -49,6 +49,8 @@ function solve() {
 	}
     });
 
+    console.log(controls);
+
     start = 0;
     var result = "";
     var result = document.getElementById("check");
