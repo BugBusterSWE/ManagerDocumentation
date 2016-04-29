@@ -60,14 +60,14 @@ function solve() {
 	var choice = getSelect(chunk.mistake);
 	result.appendChild(choice);
 
-	console.log(result.innerHTML);
-
 	start = chunk.end + chunk.mistake[0].length; 
     });
     
     if ( start > 0 ) {
 	result.innerHTML = result.innertHTML + text.substring(start);
     }
+
+    console.log(resul.innerHTML);
 }
 
 
