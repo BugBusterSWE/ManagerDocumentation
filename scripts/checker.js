@@ -67,7 +67,7 @@ function solve() {
 	result.innerHTML = result.innertHTML + text.substring(start);
     }
 
-    console.log(resul.innerHTML);
+    console.log(result.innerHTML);
 }
 
 
