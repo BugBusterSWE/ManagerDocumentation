@@ -1,5 +1,13 @@
-function print() {
-    console.log("Ecco");
+function e() {
+    var file = document.getElementById("ckfile").files[0];
+    var reader = new FileReader();
+
+    reader.onload = function (event) {
+	// The file's text will be printed here
+	console.log(event.target.result)
+    };
+
+    reader.readAsText(file);
 }
 
 function getSelect(array) {
