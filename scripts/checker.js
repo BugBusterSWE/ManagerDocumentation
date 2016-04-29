@@ -63,10 +63,8 @@ function solve() {
 	start = chunk.end + chunk.mistake[0].length; 
     });
 
-    console.log(result.innerHTML);
-    
     if ( start > 0 ) {
-	result.innerHTML = result.innertHTML + text.substring(start);
+	result.innerHTML = result.innerHTML + text.substring(start);
     }
 }
 
