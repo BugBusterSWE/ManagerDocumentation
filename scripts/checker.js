@@ -1,15 +1,47 @@
-function e() {
-    var file = document.getElementById("ckfile").files[0];
+// Global variables (WARNING):
+var source = ""; // Text will be check
+var dictionary = []; // Set of the correct words
+
+/**
+ * Read the file selected and it invoke the callback passed the content of file.
+ * @param idFile {String}     Id input file
+ * @param callback {Function} Function to be call when the reader have been read the file
+ */
+function selectFile(idFile,callback) {
+    var file = document.getElementById(idFile).files[0];
     var reader = new FileReader();
 
     reader.onload = function (event) {
-	// The file's text will be printed here
-	console.log(event.target.result)
+	// The file's text will be solved
+	callback(event.target.result);
     };
 
     reader.readAsText(file);
 }
 
+/**
+ * Set global variable dictionary with the content of the file selected.
+ */
+function selectDictionary() {
+    selectFile("ckdictionary",function (text) {
+	dictionary = JSON.parse(text).dictionary;
+    });
+}
+
+/**
+ * Set global variable source with the content of file selected.
+ */
+function selectSource() {
+    selectFile("cksource",function (text) {
+	source = text;
+    });
+}
+
+/**
+ * Return the select html element. The inside options will be set with the array values.
+ * @param array {Array} Array of options
+ * @return {HTMLSelect} A select element with the options of the array
+ */
 function getSelect(array) {
     var select = document.createElement("select");
     var option = undefined;	
@@ -25,14 +57,12 @@ function getSelect(array) {
     return select;
 }
 
-function solve() {
-    var targets = ["provaro","pass"];
+function solve(text) {
     var regWord = /\w+/g;
 
     var controls = [];
 
-    var text = document.getElementById("prova").innerHTML;
-    var words = text.match(regWord);
+    var words = source.match(regWord);
     var before = "";
 
     var start = 0;
@@ -40,7 +70,7 @@ function solve() {
     words.forEach( function (word) {
 	var pullTarget = [];
 
-	targets.forEach( function (target) {
+	dictionary.forEach( function (target) {
 	    var distance = getEditDistance(word.toLowerCase(),target);
 
 	    if (distance > 0 && distance <= 2) {
@@ -50,7 +80,7 @@ function solve() {
 
 	if (pullTarget.length > 0) {
 	    var chunk = {
-		end: text.indexOf(word,start),
+		end: source.indexOf(word,start),
 		mistake: pullTarget			
 	    };
 
@@ -66,7 +96,7 @@ function solve() {
     controls.forEach( function ( chunk ) {
 	if ( chunk.end - start > 0 ) {
 	    result.innerHTML = 
-		result.innerHTML + text.substring(start,chunk.end);
+		result.innerHTML + source.substring(start,chunk.end);
 	}	
 
 	var choice = getSelect(chunk.mistake);
@@ -76,7 +106,7 @@ function solve() {
     });
 
     if ( start > 0 ) {
-	result.innerHTML = result.innerHTML + text.substring(start);
+	result.innerHTML = result.innerHTML + source.substring(start);
     }
 }
 
