@@ -11,8 +11,8 @@
   <ul id="documentSet">
   </ul>
   <div id="checker">
-    <div id="prova">Sono qui a provare lo script</div>
-    <input id="ckfile" type="file" name="source" onchange="e()">
+    <div>Source: <input id="cksource" type="file" name="source" onchange="selectSource()" /></div>
+    <div>Dictionary: <input id="ckdictionary" type="file" name="dictionary" onchange="selectDictionary()" /></div>
     <button type="button" onclick="solve()">Check</button>
     <div id="check"></div>
   </div>
