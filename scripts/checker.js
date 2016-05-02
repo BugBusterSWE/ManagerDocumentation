@@ -59,6 +59,14 @@ function getSelect(array,tag) {
 }
 
 /**
+ * Clean the content of check and correction insert a empty string
+ */
+function clean() {
+    document.getElementById("check").innerHTML = "";
+    document.getElementById("correction").innerHTML = "";
+}
+
+/**
  * Return the string with the correction selected.
  * @return {string} Correct text
  */
@@ -77,7 +85,7 @@ function correct() {
 	start = tag;
     }
 
-    console.log(buffer);
+    document.getElementById("correction").innerHTML = buffer;
 }
 
 
