@@ -90,7 +90,7 @@ function correct() {
 
 
 function solve(text) {
-    var regWord = /\w+/g;
+    var regWord = /[a-zA-Zàáèéìíòóùú]+/g;
 
     var controls = [];
 
