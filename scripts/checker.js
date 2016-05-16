@@ -1,6 +1,9 @@
+const fs = require("fs");
+
 // Global variables (WARNING):
 var source = ""; // Text will be check
 var dictionary = []; // Set of the correct words
+var fileSource = "";
 
 /**
  * Read the file selected and it invoke the callback passed the content of file.
@@ -12,8 +15,8 @@ function selectFile(idFile,callback) {
     var reader = new FileReader();
 
     reader.onload = function (event) {
-	// The file's text will be solved
-	callback(event.target.result);
+	    // The file's text will be solved
+	    callback(event.target.result);
     };
 
     reader.readAsText(file);
@@ -32,6 +35,8 @@ function selectDictionary() {
  * Set global variable source with the content of file selected.
  */
 function selectSource() {
+    fileSource = document.getElementById("cksource").files[0];  
+
     selectFile("cksource",function (text) {
 	source = text;
     });
@@ -75,7 +80,8 @@ function correct() {
     var buffer = "";
     var start = 0;
 
-    for ( var select of list ) {
+    for ( var i = 0; i < list.length; i++ ) {
+    var select = list[i];
 	var tag = select.getAttribute("tag");
 	var mistake = select.options[0].value;
 	var replacement = select.options[select.selectedIndex].value;
@@ -84,8 +90,19 @@ function correct() {
 	buffer += source.substring(start,tag).split(mistake).join(replacement);
 	start = tag;
     }
+    
+    // Complete with remaining source
+    buffer += source.substring(start);
 
-    document.getElementById("correction").innerHTML = buffer;
+    fs.writeFile(fileSource.path, buffer, (err) => {
+        var message = "Done!!";
+        
+        if (err) {
+            message = "Error occurred!!";        
+        }
+
+        document.getElementById("correction").innerHTML = message;
+    });
 }
 
 
@@ -106,9 +123,10 @@ function solve(text) {
 
 	dictionary.forEach( function (target) {
 	    var distance = getEditDistance(word.toLowerCase(),target);
-
+        var measure = distance / word.length;
+    
 	    // Append any likely matchs
-	    if (distance > 0 && distance <= 2) {
+	    if (word.length === 1 || (measure > 0 && measure < 0.5)) {
 		pullTarget.push(target);
 	    }
 	});
