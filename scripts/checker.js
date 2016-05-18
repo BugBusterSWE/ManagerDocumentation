@@ -5,6 +5,20 @@ var source = ""; // Text will be check
 var dictionary = []; // Set of the correct words
 var fileSource = "";
 
+function cleanLatexStress(text) {
+    return text
+	.replace(/\\`o/g,"ò")
+	.replace(/\\'o/g,"ò")
+	.replace(/\\`a/g,"à")
+	.replace(/\\'a/g,"à")
+	.replace(/\\`u/g,"ù")
+	.replace(/\\'u/g,"ù")
+	.replace(/\\`e/g,"è")
+	.replace(/\\'e/g,"é")
+	.replace(/\\`i/g,"ì")
+	.replace(/\\'i/g,"ì");
+}
+
 /**
  * Read the file selected and it invoke the callback passed the content of file.
  * @param idFile {String}     Id input file
@@ -38,7 +52,7 @@ function selectSource() {
     fileSource = document.getElementById("cksource").files[0];  
 
     selectFile("cksource",function (text) {
-	source = text;
+	source = cleanLatexStress(text);
     });
 }
 
